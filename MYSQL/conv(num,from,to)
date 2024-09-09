@@ -1,0 +1,20 @@
+programmers: 특정 형질을 가지는 대장균 찾기
+https://school.programmers.co.kr/learn/courses/30/lessons/301646
+
+배운점: conv로 원하는 진수를 표현하는게 가능하다.
+
+conv(number, from_base, to_base)
+number: 변환하려는 숫자. 문자열이나 숫자로 표현
+from_base: 입력 숫자의 현재 진법. 2에서 36 사이의 값
+to_base: 변환하고자 하는 대상 진법. 마찬가지로 2에서 36 사이의 값
+
+예를 들어:
+
+conv('a', 16, 2) : 16진수 'a'를 2진수로. 결과는 '1010'.
+conv('1010', 2, 10) : 2진수 '1010'을 10진수로. 결과는 '10'.
+conv(15, 10, 16) : 10진수 15를 16진수로. 결과는 'F'.
+
+답안 :
+select COUNT(*) as COUNT from ECOLI_DATA 
+where conv(GENOTYPE,10,2)%100<10 and 
+(conv(GENOTYPE,10,2)%1000>=100 or conv(GENOTYPE,10,2)%10 >=1);
