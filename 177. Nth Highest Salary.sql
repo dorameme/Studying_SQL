@@ -18,15 +18,14 @@ BEGIN
   );
 END;
 
--- N번째로 높은 급여를 반환하는 함수 정의
+
 CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
 BEGIN
+set N=N-1;
   RETURN (
-    -- 서브쿼리: 중복 제거된 급여(salary)를 내림차순으로 정렬한 뒤,
-    -- N번째 급여를 반환 (OFFSET은 0부터 시작하므로 N-1)
     SELECT DISTINCT salary
     FROM employee
     ORDER BY salary DESC
-    LIMIT 1 OFFSET N - 1
+    LIMIT 1 OFFSET N
   );
 END;
